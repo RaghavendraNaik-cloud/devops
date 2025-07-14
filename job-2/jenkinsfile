@@ -1,6 +1,10 @@
 pipeline{
     agent any
     stages{
+        tools{
+            maven 'maven'
+            jdk 'java_11'
+        }
         stage("git checkout"){
             steps{
                 git branch: 'main', url: 'https://github.com/RaghavendraNaik-cloud/My-cloud.git' 
