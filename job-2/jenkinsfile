@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    stages{
+        stage("git checkout"){
+            steps{
+                git branch: 'jenkins', url: 'https://github.com/RaghavendraNaik-cloud/devops.git' 
+            }
+        }
+        stage ("build"){
+            steps{
+                echo "build successed"
+            }
+        }
+
+    }
+}
+
+    
+
+
+    
