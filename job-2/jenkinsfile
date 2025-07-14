@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("git checkout"){
             steps{
-                git branch: 'jen', url: 'https://github.com/RaghavendraNaik-cloud/devops.git' 
+                git branch: 'ragu', url: 'https://github.com/RaghavendraNaik-cloud/devops.git' 
             }
         }
         stage ("build"){
