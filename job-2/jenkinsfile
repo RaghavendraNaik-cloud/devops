@@ -10,9 +10,14 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/RaghavendraNaik-cloud/My-cloud.git' 
             }
         }
-        stage ("build"){
+        stage ("maven clean"){
             steps{
-                echo "build successed"
+                sh 'mvn clean'
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh 'mvn build'
             }
         }
 
