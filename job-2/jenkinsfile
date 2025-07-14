@@ -1,7 +1,7 @@
 pipeline{
     agent any
         tools {
-            maven 'maven'
+            maven 'Maven'
             jdk 'java_11'
         }
         stages{
@@ -11,12 +11,12 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/RaghavendraNaik-cloud/My-cloud.git' 
             }
         }
-        stage ("maven clean"){
+        stage ('Maven clean'){
             steps{
                 sh 'mvn clean'
             }
         }
-        stage("maven build"){
+        stage('Maven build'){
             steps{
                 sh 'mvn build'
             }
