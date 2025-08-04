@@ -1,20 +1,15 @@
-pipeline {
-    agent any
+pipeline{
+    agent any 
     stages{
+        stage ("git checkout"){
+            steps{
+                git branch: 'jenkins', url: 'https://github.com/RaghavendraNaik-cloud/devops.git'
+            }
+        }
         stage ("build"){
             steps{
-                echo "building the process"
-            }   
+                echo "builing"
+            }
         }
-        stage("test"){
-                steps{
-                    echo "testing the process"
-                }
-            }
-            stage ("deploy"){
-                steps{
-                    echo "deploying the process"
-                }
-            }
     }
 }
