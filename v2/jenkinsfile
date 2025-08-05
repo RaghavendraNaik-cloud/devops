@@ -1,0 +1,13 @@
+pipeline{
+    agent any 
+    stages{
+        stage('server-ip'){
+            steps{
+                sh '''
+                hostname -I
+                echo "ip address: $(hostname -I)"
+                '''
+            }
+        }
+    }
+}
