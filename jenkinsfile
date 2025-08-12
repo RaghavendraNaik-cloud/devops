@@ -33,10 +33,10 @@ kinspipeline{
     
     stage('Containersation'){
         steps{
-            sh '
-            docker stop c1 || true
+            sh ''' docker stop c1 || true
             docker rm c1 || true
-            docker run -it -d --name c1 -p 8080:80 RaghavendraNaik-cloud/project:1 '
+            docker run -it -d --name c1 -p 8080:80 RaghavendraNaik-cloud/project:'''
+            
         }
     }
 
