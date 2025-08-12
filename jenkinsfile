@@ -1,4 +1,4 @@
-pipeline{
+kinspipeline{
      agent any
 
     tools{
@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('git checkout'){
         steps{
-            git branch: 'main' url: 'https://github.com/RaghavendraNaik-cloud/devops.git'
+            git branch: 'jenkins' url: 'https://github.com/RaghavendraNaik-cloud/devops.git'
         }
     }
 
