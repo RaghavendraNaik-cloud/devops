@@ -1,0 +1,62 @@
+pipeline{
+     agent any
+
+    tools{
+        jdk 'jdk11'
+        maven 'maven'
+    }
+
+    stages{
+        stage('git checkout'){
+        steps{
+            git branch: 'main' url: 'https://github.com/RaghavendraNaik-cloud/devops.git'
+        }
+    }
+
+    stage('compile'){
+        steps{
+            sh 'mvn compile'
+        }
+    }
+
+    stage('build'){
+        steps{
+            sh 'mvn clean install'
+        }
+    }
+
+    stage('Build Docker Image'){
+        steps{
+            sh 'docker build -t RaghavendraNaik-cloud/project:1 .'
+        }
+    }
+    
+    stage('Containersation'){
+        steps{
+            sh '
+            docker stop c1 || true
+            docker rm c1 || true
+            docker run -it -d --name c1 -p 8080:80 RaghavendraNaik-cloud/project:1 '
+        }
+    }
+
+    stage('Login to Docker Hub'){
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    }
+                }
+            }
+    }
+
+    stage('Push Docker Image to Docker Hub') {
+            steps {
+                sh 'docker push RaghavendraNaik-cloud/project:1'
+            }
+            
+        }
+       
+}
+   
+    
